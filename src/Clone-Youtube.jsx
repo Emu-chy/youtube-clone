@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import YoutubeLogo from "./components/YoutubeLogo.component";
 import Form from "./components/Form.component";
@@ -6,6 +7,27 @@ import Input from "./components/Input.component";
 import Button from "./components/Button.component";
 
 const CloneYoutube = () => {
+    // const [videos, setVideos] = useState([]);
+
+    useEffect(() => {
+        const getApis = async () => {
+            try {
+                const baseUrl = "https://www.googleapis.com/youtube/v3/search";
+                const key = "AIzaSyA58MGxmPPpLoYO-tg9kNjMftBuB3N-rtk";
+                const type = "video";
+                const part = "snippet";
+
+                const { data } = await axios.get(
+                    `${baseUrl}?key=${key}&type=${type}&part=${part}&q=artcel`
+                );
+                console.log(data.items);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getApis();
+    }, []);
+
     return (
         <>
             <div className="container">
@@ -21,6 +43,7 @@ const CloneYoutube = () => {
                         <Button type="submit" className="btn btn-outline-success " text="Search" />
                     </Form>
                 </header>
+                <div className="row"></div>
             </div>
         </>
     );
