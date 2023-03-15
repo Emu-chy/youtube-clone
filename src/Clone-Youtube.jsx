@@ -5,6 +5,8 @@ import YoutubeLogo from "./components/YoutubeLogo.component";
 import Form from "./components/Form.component";
 import Input from "./components/Input.component";
 import Button from "./components/Button.component";
+import VideoPlayer from "./components/VideoPlayer.component";
+import VideoPlaylist from "./components/VideoPlaylist.component";
 
 const CloneYoutube = () => {
     // const [videos, setVideos] = useState([]);
@@ -43,7 +45,10 @@ const CloneYoutube = () => {
                         <Button type="submit" className="btn btn-outline-success " text="Search" />
                     </Form>
                 </header>
-                <div className="row"></div>
+                <div className="row">
+                    <VideoPlayer />
+                    <VideoPlaylist />
+                </div>
             </div>
         </>
     );
