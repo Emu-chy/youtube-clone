@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import YoutubeLogo from "./components/YoutubeLogo.component";
@@ -10,7 +10,10 @@ import VideoPlaylist from "./components/VideoPlaylist.component";
 
 const CloneYoutube = () => {
     const [videos, setVideos] = useState([]);
+    const [videoId, setVideoId] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+
+    const video = videos.find((video) => video.id.videoId === videoId);
 
     const handleSearch = async (e) => {
         try {
@@ -47,8 +50,18 @@ const CloneYoutube = () => {
                     </Form>
                 </header>
                 <div className="row">
-                    <VideoPlayer />
-                    <VideoPlaylist videos={videos} />
+                    <VideoPlayer
+                        videoId={videoId}
+                        title={video?.snippet?.title || ""}
+                        channelTitle={video?.snippet?.channelTitle || ""}
+                        description={video?.snippet?.description || ""}
+                    />
+                    <VideoPlaylist
+                        handleSelect={(videoId) => {
+                            setVideoId(videoId);
+                        }}
+                        videos={videos}
+                    />
                 </div>
             </div>
         </>
