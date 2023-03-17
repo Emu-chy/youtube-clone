@@ -24,8 +24,9 @@ const CloneYoutube = () => {
             const part = "snippet";
 
             const { data } = await axios.get(
-                `${baseUrl}?key=${key}&type=${type}&part=${part}&q=${searchQuery}`
+                `${baseUrl}?key=${key}&type=${type}&maxResults=50&part=${part}&q=${searchQuery}`
             );
+            console.log(data.items);
             setVideos(data.items);
         } catch (err) {
             console.log(err);
